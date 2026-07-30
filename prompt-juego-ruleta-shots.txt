@@ -1,0 +1,35 @@
+
+Actúa como un desarrollador experto en React Tailwind CSS.Crea un juego tipo ruleta, el juego trata de que la ruleta tenga 15 opciones pero se le puede agregar más.
+
+1- Tecnologias 
+react, tailwind html
+
+2- Mecanica del juego:
+ - Se puede agregar los jugadores que quieran, no requiere base de datos.
+ - Se puede agregar las opciones que quieran en la ruleta, pero siempre estara por defecto 10 opciones.
+ - Al darle comenzar al juego , luego de llenar las personas y las opciones de la ruleta, se escoge automaticamente luego de 5 segundos al primer jugador.
+ - Luego de escoger al primer jugador, el sistema reconoce el orden en el que esta el jugador y entonces a partir de ahí, sigue en orden el jugador siguiente.
+ - Cada que gire la ruleta se le anota al jugador la suma de shots que esta tomando, esto para la tabla de posiciones.
+ - Cuando un jugador tiene en la tabla 10 shots , saldrá un mensaje con el nombre de el diciendo "Eres el más borracho de todos"
+ 
+ - Tabla de puntaje de cada persona, ordenando quién ha tomado más shot.
+ - Se puede resetear todo el juego
+
+3 -  Introducción del juego:
+  -  Introducción modo pop up para las reglas del juego.
+
+4- Opciones de la ruleta por defecto, por favor darme más opciones al menos para completar las 10 por defecto:
+  - 1 shot
+  - 2 shot
+  - 1 shot la persona lado izquierdo
+  - 1 shot la persona lado derecho
+  - Ningún shot
+  - 1 shot solo con la boca sin usar las manos.
+
+5- Animación:
+  - El juego o la ruleta este en la mitad como en medio de un estadio.
+  - A los lados como publico con cartes con frases como "Toma Guaro", "Toma ron", "Toma pola"
+  - El diseño moderno
+
+
+
