@@ -1,0 +1,19 @@
+import type { RouletteOption } from '../types/game';
+
+export const DEFAULT_OPTIONS: RouletteOption[] = [
+  { id: 1, text: '1 shot', color: '#ff3131', shots: 1, isCustom: false },
+  { id: 2, text: '2 shots', color: '#ff8c00', shots: 2, isCustom: false },
+  { id: 3, text: '1 shot persona lado izquierdo', color: '#ffe600', shots: 1, isCustom: false },
+  { id: 4, text: '1 shot persona lado derecho', color: '#39ff14', shots: 1, isCustom: false },
+  { id: 5, text: 'Ningún shot', color: '#00bfff', shots: 0, isCustom: false },
+  { id: 6, text: '1 shot solo con la boca sin manos', color: '#bf00ff', shots: 1, isCustom: false },
+  { id: 7, text: '3 shots', color: '#ff69b4', shots: 3, isCustom: false },
+  { id: 8, text: '1 shot y elige quién toma', color: '#00f5ff', shots: 1, isCustom: false },
+  { id: 9, text: 'Bebe y cuenta un chiste', color: '#ffffff', shots: 0, isCustom: false },
+  { id: 10, text: 'Todos toman 1 shot', color: '#8b4513', shots: 1, isCustom: false },
+  { id: 11, text: '1 shot y baila 10 segundos', color: '#ff1493', shots: 1, isCustom: false },
+  { id: 12, text: '2 shots y pasa 1 a otro', color: '#ffd700', shots: 2, isCustom: false },
+  { id: 13, text: 'Skip - no tomas nada', color: '#808080', shots: 0, isCustom: false },
+  { id: 14, text: 'Double shot', color: '#1a1a1a', shots: 2, isCustom: false },
+  { id: 15, text: 'Ruleta extra - gira de nuevo', color: '#40e0d0', shots: 0, isCustom: false },
+];
