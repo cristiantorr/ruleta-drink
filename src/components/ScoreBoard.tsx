@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
-import type { Player } from '../types/game';
-import { getSortedPlayers } from '../utils/gameLogic';
+import { motion } from "framer-motion";
+import type { Player } from "../types/game";
+import { getSortedPlayers } from "../utils/gameLogic";
 
 interface ScoreBoardProps {
   players: Player[];
@@ -8,7 +8,11 @@ interface ScoreBoardProps {
   currentPlayerIndex: number;
 }
 
-export function ScoreBoard({ players, scores, currentPlayerIndex }: ScoreBoardProps) {
+export function ScoreBoard({
+  players,
+  scores,
+  currentPlayerIndex,
+}: ScoreBoardProps) {
   const sorted = getSortedPlayers(players, scores);
 
   return (
@@ -30,20 +34,22 @@ export function ScoreBoard({ players, scores, currentPlayerIndex }: ScoreBoardPr
               transition={{ delay: i * 0.05 }}
               className={`flex items-center gap-3 p-3 rounded-xl transition-all ${
                 isDrunk
-                  ? 'bg-gradient-to-r from-[#ff3131]/30 to-[#ff8c00]/30 border border-[#ff3131]/50'
+                  ? "bg-gradient-to-r from-[#ff3131]/30 to-[#ff8c00]/30 border border-[#ff3131]/50"
                   : isCurrent
-                  ? 'bg-[#00f5ff]/10 border border-[#00f5ff]/30'
-                  : 'bg-[#252547] border border-gray-700'
+                    ? "bg-[#00f5ff]/10 border border-[#00f5ff]/30"
+                    : "bg-[#252547] border border-gray-700"
               }`}
             >
               <span className="text-lg font-bold w-8 text-center">
-                {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i + 1}`}
+                {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : `${i + 1}`}
               </span>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className={`font-bold text-sm sm:text-base truncate ${
-                    isCurrent ? 'text-[#00f5ff]' : 'text-white'
-                  }`}>
+                  <span
+                    className={`font-bold text-sm sm:text-base truncate ${
+                      isCurrent ? "text-[#00f5ff]" : "text-white"
+                    }`}
+                  >
                     {entry.player.name}
                   </span>
                   {isCurrent && (
@@ -58,16 +64,24 @@ export function ScoreBoard({ players, scores, currentPlayerIndex }: ScoreBoardPr
                   )}
                 </div>
                 <div className="flex items-center gap-1 mt-1">
-                  {Array.from({ length: Math.min(entry.shots, 15) }).map((_, j) => (
-                    <span key={j} className="text-xs">
-                      {entry.shots >= 10 ? '🍷' : entry.shots >= 5 ? '🍺' : '🥃'}
-                    </span>
-                  ))}
+                  {Array.from({ length: Math.min(entry.shots, 15) }).map(
+                    (_, j) => (
+                      <span key={j} className="text-xs">
+                        {entry.shots >= 10
+                          ? "🍷"
+                          : entry.shots >= 5
+                            ? "🍺"
+                            : "🍺"}
+                      </span>
+                    ),
+                  )}
                 </div>
               </div>
-              <span className={`text-xl font-extrabold ${
-                isDrunk ? 'text-[#ff3131]' : 'text-[#ffe600]'
-              }`}>
+              <span
+                className={`text-xl font-extrabold ${
+                  isDrunk ? "text-[#ff3131]" : "text-[#ffe600]"
+                }`}
+              >
                 {entry.shots}
               </span>
             </motion.div>
