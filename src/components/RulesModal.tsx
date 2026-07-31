@@ -1,6 +1,5 @@
-
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { motion, AnimatePresence } from "framer-motion";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface RulesModalProps {
   isOpen: boolean;
@@ -8,19 +7,20 @@ interface RulesModalProps {
 }
 
 const rules = [
-  'Agrega los jugadores (mínimo 2)',
-  'Personaliza las opciones de la ruleta o usa las predeterminadas',
-  'El sistema elige al primer jugador automáticamente',
-  'Gira la ruleta y suma los shots que salgan',
-  'Sigue el orden secuencial de los jugadores',
-  'Al llegar a 10 shots, ¡eres el más borracho de todos!',
-  '¡El que más toma, pierde!',
+  "Agrega los jugadores (mínimo 2)",
+  "Personaliza las opciones de la ruleta o usa las predeterminadas",
+  "Siempre colocar el # de shots",
+  "El sistema elige al primer jugador automáticamente",
+  "Gira la ruleta y suma los shots que salgan",
+  "Sigue el orden secuencial de los jugadores",
+  "Al llegar a 10 shots, ¡eres el más borracho de todos!",
+  "¡El que más toma, pierde!",
 ];
 
 export function RulesModal({ isOpen, onClose }: RulesModalProps) {
   const { value: dontShowAgain, setValue: setDontShowAgain } = useLocalStorage(
-    'ruleta-hide-rules',
-    false
+    "ruleta-hide-rules",
+    false,
   );
 
   const handleClose = () => {
@@ -44,7 +44,7 @@ export function RulesModal({ isOpen, onClose }: RulesModalProps) {
             initial={{ scale: 0.8, y: 50 }}
             animate={{ scale: 1, y: 0 }}
             exit={{ scale: 0.8, y: 50 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
             className="bg-gradient-to-b from-[#1a1a3e] to-[#252547] rounded-2xl p-6 sm:p-8 max-w-lg w-full border border-[#00f5ff]/30 shadow-2xl shadow-[#00f5ff]/10"
             onClick={(e) => e.stopPropagation()}
           >
