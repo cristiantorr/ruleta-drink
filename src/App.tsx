@@ -14,14 +14,19 @@ import { ScoreBoard } from './components/ScoreBoard';
 import { GameControls } from './components/GameControls';
 import { OptionsList } from './components/OptionsList';
 import { PlayersList } from './components/PlayersList';
+import { OptionsModal } from './components/OptionsModal';
+import type { DrunkLevel } from './components/DrunkAlert';
 
 function App() {
   const { value: hideRules } = useLocalStorage('ruleta-hide-rules', false);
   const [showRules, setShowRules] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [showDrunkAlert, setShowDrunkAlert] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const [drunkPlayerName, setDrunkPlayerName] = useState('');
+  const [drunkLevel, setDrunkLevel] = useState<DrunkLevel>('drunk');
   const [firstTurnDone, setFirstTurnDone] = useState(false);
+  const [achievedMilestones, setAchievedMilestones] = useState<Set<string>>(new Set());
 
   const {
     state,
@@ -74,20 +79,35 @@ function App() {
 
     if (currentPlayer) {
       const currentScore = state.scores[currentPlayer.id] || 0;
-      if (currentScore + option.shots >= 10) {
-        setTimeout(() => {
-          sound.alert();
-          setDrunkPlayerName(currentPlayer.name);
-          setShowDrunkAlert(true);
-        }, 500);
+      const newScore = currentScore + option.shots;
+      
+      const milestones: { threshold: number; level: DrunkLevel }[] = [
+        { threshold: 20, level: 'vomit' },
+        { threshold: 15, level: 'noMore' },
+        { threshold: 10, level: 'drunk' },
+      ];
+      
+      for (const milestone of milestones) {
+        const milestoneKey = `${currentPlayer.id}-${milestone.threshold}`;
+        if (newScore >= milestone.threshold && !achievedMilestones.has(milestoneKey)) {
+          setAchievedMilestones(prev => new Set([...prev, milestoneKey]));
+          setTimeout(() => {
+            sound.alert();
+            setDrunkPlayerName(currentPlayer.name);
+            setDrunkLevel(milestone.level);
+            setShowDrunkAlert(true);
+          }, 500);
+          break;
+        }
       }
     }
-  }, [spinRoulette, sound, state]);
+  }, [spinRoulette, sound, state, achievedMilestones]);
 
   const handleReset = useCallback(() => {
     sound.reset();
     resetGame();
     setFirstTurnDone(false);
+    setAchievedMilestones(new Set());
   }, [resetGame, sound]);
 
   const handleResetAll = useCallback(() => {
@@ -109,7 +129,15 @@ function App() {
         isOpen={showDrunkAlert}
         playerName={drunkPlayerName}
         option={state.selectedOption}
+        level={drunkLevel}
         onClose={() => setShowDrunkAlert(false)}
+      />
+      <OptionsModal
+        isOpen={showOptions}
+        options={state.options}
+        onAddOption={addOption}
+        onRemoveOption={removeOption}
+        onClose={() => setShowOptions(false)}
       />
 
       <AnimatePresence mode="wait">
@@ -163,6 +191,7 @@ function App() {
                   onResetAll={handleResetAll}
                   onShowHistory={() => setShowHistory(true)}
                   onShowRules={() => setShowRules(true)}
+                  onShowOptions={() => setShowOptions(true)}
                 />
 
                 <ScoreBoard
