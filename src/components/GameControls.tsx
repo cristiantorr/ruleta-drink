@@ -9,6 +9,7 @@ interface GameControlsProps {
   onResetAll: () => void;
   onShowHistory: () => void;
   onShowRules: () => void;
+  onShowOptions: () => void;
 }
 
 export function GameControls({
@@ -19,6 +20,7 @@ export function GameControls({
   onResetAll,
   onShowHistory,
   onShowRules,
+  onShowOptions,
 }: GameControlsProps) {
   return (
     <div className="flex flex-col items-center gap-4">
@@ -74,6 +76,14 @@ export function GameControls({
           className="px-4 py-2 rounded-xl bg-[#252547] border border-gray-600 text-gray-300 text-sm hover:border-[#ff00ff] hover:text-[#ff00ff] transition-colors"
         >
           📜 Historial
+        </motion.button>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={onShowOptions}
+          className="px-4 py-2 rounded-xl bg-[#252547] border border-gray-600 text-gray-300 text-sm hover:border-[#39ff14] hover:text-[#39ff14] transition-colors"
+        >
+          ✏️ Editar Opciones
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.05 }}
